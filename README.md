@@ -100,5 +100,3 @@ Contributing
 License
 
     This project is MIT licensed.
-
-bold the topics in this readme file
