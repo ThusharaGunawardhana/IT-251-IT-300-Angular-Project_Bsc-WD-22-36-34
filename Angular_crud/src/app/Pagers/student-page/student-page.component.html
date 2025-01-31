@@ -1,0 +1,49 @@
+<div>
+    <div class="mt-5 container">
+      <div class="card shadow-lg rounded">
+        <div class="card-header bg-light text-dark">
+          <h4 class="mb-0 d-flex justify-content-between align-items-center">
+            Student List
+            <a routerLink="/student/create" class="btn btn-primary">Add Student</a>
+          </h4>
+        </div>
+        <div *ngIf="isLoading; else elseForm">
+          <app-spinner />
+        </div>
+        <ng-template #elseForm>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-striped table-hover table-bordered rounded overflow-hidden">
+                <thead class="table-dark text-center">
+                  <tr>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Student NIC</th>
+                    <th>Student Course</th>
+                    <th>Student Contact</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of this.students">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.nic }}</td>
+                    <td>{{ item.course }}</td>
+                    <td>{{ item.contact }}</td>
+                    <td>{{ item.created_at | date }}</td>
+                    <td class="text-center">
+                      <a routerLink="/student/edit/{{ item.id }}" class="btn btn-warning btn-sm">Edit</a>
+                      <button class="btn btn-danger btn-sm ms-2" (click)="deleteStudent(item.id)">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  
